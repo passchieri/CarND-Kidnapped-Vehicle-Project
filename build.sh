@@ -16,4 +16,11 @@ cd `dirname $0`
 mkdir -p build
 cd build
 cmake ..
-make -j `nproc` $*
+nproc=1
+if test `uname -s` = Darwin ; then
+	nproc=`sysctl -n hw.physicalcpu`
+else
+	proc=`nproc`
+fi
+
+make -j $nproc $*
