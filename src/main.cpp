@@ -39,8 +39,10 @@ int main()
   // Read map data
   Map map;
   if (!read_map_data("../../data/map_data.txt", map)) {
+    if (!read_map_data("../data/map_data.txt", map)) {
     cout << "Error: Could not open map file" << endl;
     return -1;
+    }
   }
   
   // Create particle filter
@@ -127,8 +129,8 @@ int main()
             }
             weight_sum += particles[i].weight;
           }
-          cout << "highest w " << highest_weight << endl;
-          cout << "average w " << weight_sum/num_particles << endl;
+          //cout << "highest w " << highest_weight << endl;
+          //cout << "average w " << weight_sum/num_particles << endl;
           
           json msgJson;
           msgJson["best_particle_x"] = best_particle.x;
